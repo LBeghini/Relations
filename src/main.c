@@ -1,10 +1,15 @@
+#include "set.h"
 #include <stdio.h>
+#include "fileIO.h"
+#include <conio.h>
+#include "global.h"
 #define PATH "..\\set.txt"
 
-#include "fileIO.h"
+
 int main() {
     Line *input = process_input(PATH);
-    print_lines(input);
+    listOfSets = (Set*) malloc(sizeof(Set));
+    listOfSets = create_list_set(listOfSets, input);
 
     return 0;
 }
