@@ -10,6 +10,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef struct Couple{
+    int x;
+    int y;
+    struct Couple * next;
+} Couple;
+
 typedef struct Node {
     int value;
     struct Node * next;

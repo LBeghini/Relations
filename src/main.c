@@ -4,12 +4,13 @@
 #include <conio.h>
 #include "global.h"
 #define PATH "..\\set.txt"
+#include "operations.h"
 
 
 int main() {
     Line *input = process_input(PATH);
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
-
+    greater_than(listOfSets->head, listOfSets->next->head);
     return 0;
 }
