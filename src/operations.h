@@ -11,7 +11,8 @@
 #include <stdlib.h>
 #include "global.h"
 
-Couple *greater_than(Node *A, Node *B);
+Couple *greater_than(Node *Ahead, Node *Bhead);
 Couple *less_than(Node *Ahead, Node *Bhead);
+Couple *equals(Node *Ahead, Node *Bhead);
 
 #endif //RELATIONS_OPERATIONS_H
