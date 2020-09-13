@@ -11,6 +11,6 @@ int main() {
     Line *input = process_input(PATH);
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
-    equals(listOfSets->head, listOfSets->head);
+    square_root_of(listOfSets->head, listOfSets->next->head);
     return 0;
 }
