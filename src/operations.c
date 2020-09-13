@@ -155,46 +155,54 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
 
 }
 
-Set *domain(Couple *couple){
-    Set * result = (Set *)calloc(1, sizeof(Set));
+Node *domain(Couple *couple){
     Node * domain = (Node *) calloc(1, sizeof(Node));
-    result->head = domain;
-    Couple * current = couple;
+    Couple * currentCouple = couple;
+    Node * currentNode = domain;
+    int count = 0;
 
-    while (current != NULL){
-        if(!belongs_to(current->x, result->head)){
-            domain->value =  current->x;
+    while (currentCouple != NULL){
+        if(!belongs_to(currentCouple->x, domain)) {
+            if (count == 0){
+                domain->value = currentCouple->x;
+                currentCouple = currentCouple->next;
+                count ++;
+                continue;
+            }
+            currentNode->next = (Node *) calloc(1, sizeof(Node));
+            currentNode->next->value = currentCouple->x;
+            currentNode = currentNode->next;
         }
-        current = current->next;
-        if(current == NULL){
-            continue;
-        }
-        domain->next = (Node *) calloc(1, sizeof(Node));
-        domain = domain->next;
+        currentCouple = currentCouple->next;
+
     }
 
-    return result;
+    return domain;
 }
 
-Set *image(Couple *couple){
-    Set * result = (Set *)calloc(1, sizeof(Set));
+Node *image(Couple *couple){
     Node * image = (Node *) calloc(1, sizeof(Node));
-    result->head = image;
-    Couple * current = couple;
+    Couple * currentCouple = couple;
+    Node * currentNode = image;
+    int count = 0;
 
-    while (current != NULL){
-        if(!belongs_to(current->y, result->head)){
-            image->value =  current->y;
+    while (currentCouple != NULL){
+        if(!belongs_to(currentCouple->y, image)) {
+            if (count == 0){
+                image->value = currentCouple->y;
+                currentCouple = currentCouple->next;
+                count ++;
+                continue;
+            }
+            currentNode->next = (Node *) calloc(1, sizeof(Node));
+            currentNode->next->value = currentCouple->y;
+            currentNode = currentNode->next;
         }
-        current = current->next;
-        if(current == NULL){
-            continue;
-        }
-        image->next = (Node *) calloc(1, sizeof(Node));
-        image = image->next;
+        currentCouple = currentCouple->next;
+
     }
 
-    return result;
+    return image;
 }
 
 int belongs_to(int value, Node *A) {
@@ -215,13 +223,21 @@ int belongs_to(int value, Node *A) {
 int is_functional(Couple * couple){
     Couple * current = couple;
     Couple * aux = couple;
+    int count = 0;
 
     while (aux != NULL){
         while (current != NULL){
             if(aux->x == current->x){
-                return 0;
+                count++;
+                if(count > 1) {
+                    return 0;
+                }
             }
+            current = current->next;
         }
+        aux = aux->next;
+        current = couple;
+        count = 0;
     }
     return 1;
 }
@@ -229,58 +245,66 @@ int is_functional(Couple * couple){
 int is_injective(Couple * couple){
     Couple * current = couple;
     Couple * aux = couple;
+    int count = 0;
 
     while (aux != NULL){
         while (current != NULL){
             if(aux->y == current->y){
-                return 0;
+                count++;
+                if(count > 1) {
+                    return 0;
+                }
             }
+            current = current->next;
         }
+        aux = aux->next;
+        current = couple;
+        count = 0;
     }
     return 1;
 }
 
-int is_total(Couple * couple, Node * elements){
-    Couple * currentCouple = couple;
-    Node * currentNode = elements;
+int is_total(Node * domain, Node * initial){
+    Node * currentDomain = domain;
+    Node * currentElement = initial;
     int flag = 0;
 
-    while (currentNode != NULL){
-        while (currentCouple != NULL){
-            if (currentCouple->x == currentNode->value){
+    while (currentElement != NULL){
+        while (currentDomain != NULL){
+            if (currentDomain->value == currentElement->value){
                 flag = 1;
-                currentCouple = couple;
+                currentDomain = domain;
                 break;
             }
-            currentCouple = currentCouple->next;
+            currentDomain = currentDomain->next;
         }
         if(flag == 0){
             return 0;
         }
-        currentNode = currentNode->next;
+        currentElement = currentElement->next;
         flag = 0;
     }
     return 1;
 }
 
-int is_surjective(Couple * couple, Node * elements){
-    Couple * currentCouple = couple;
-    Node * currentNode = elements;
+int is_surjective(Node * image, Node * final){
+    Node * currentImage = image;
+    Node * currentElement = final;
     int flag = 0;
 
-    while (currentNode != NULL){
-        while (currentCouple != NULL){
-            if (currentCouple->y == currentNode->value){
+    while (currentElement != NULL){
+        while (currentImage != NULL){
+            if (currentImage->value == currentElement->value){
                 flag = 1;
-                currentCouple = couple;
+                currentImage = image;
                 break;
             }
-            currentCouple = currentCouple->next;
+            currentImage = currentImage->next;
         }
         if(flag == 0){
             return 0;
         }
-        currentNode = currentNode->next;
+        currentElement = currentElement->next;
         flag = 0;
     }
     return 1;

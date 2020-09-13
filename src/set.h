@@ -29,13 +29,15 @@ typedef struct Set {
 } Set;
 
 typedef struct Relation{
+    struct Set * initial;
+    struct Set * final;
     struct Couple * couple;
     int functional;
     int injective;
     int surjective;
     int total;
-    Set * domain;
-    Set * image;
+    Node * domain;
+    Node * image;
 } Relation;
 
 Set *create_list_set(Set *head, Line *input);

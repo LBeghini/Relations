@@ -16,12 +16,12 @@ Couple *less_than(Node *Ahead, Node *Bhead);
 Couple *equals(Node *Ahead, Node *Bhead);
 Couple *square_of(Node *Ahead, Node *Bhead);
 Couple *square_root_of(Node *Ahead, Node *Bhead);
-Set *domain(Couple *couple);
-Set *image(Couple *couple);
+Node *domain(Couple *couple);
+Node *image(Couple *couple);
 int belongs_to(int value, Node *A);
 int is_injective(Couple * couple);
 int is_functional(Couple * couple);
-int is_total(Couple * couple, Node * elements);
-int is_surjective(Couple * couple, Node * elements);
+int is_total(Node * domain, Node * initial);
+int is_surjective(Node * image, Node * final);
 
 #endif //RELATIONS_OPERATIONS_H
