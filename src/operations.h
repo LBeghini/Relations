@@ -21,5 +21,6 @@ Set *image(Couple *couple);
 int belongs_to(int value, Node *A);
 int is_injective(Couple * couple);
 int is_functional(Couple * couple);
+int is_total(Couple * couple, Node * elements);
 
 #endif //RELATIONS_OPERATIONS_H
