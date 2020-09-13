@@ -17,5 +17,8 @@ Couple *equals(Node *Ahead, Node *Bhead);
 Couple *square_of(Node *Ahead, Node *Bhead);
 Couple *square_root_of(Node *Ahead, Node *Bhead);
 Set *domain_and_image(Couple *couple);
+Set *domain(Couple *couple);
+Set *image(Couple *couple);
+int belongs_to(int value, Node *A);
 
 #endif //RELATIONS_OPERATIONS_H

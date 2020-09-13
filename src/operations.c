@@ -155,31 +155,60 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
 
 }
 
-Set *domain_and_image(Couple *couple){
+Set *domain(Couple *couple){
     Set * result = (Set *)calloc(1, sizeof(Set));
-
     Node * domain = (Node *) calloc(1, sizeof(Node));
-    Node * image = (Node *) calloc(1, sizeof(Node));
-
-    result->next = (Set *) calloc(1, sizeof(Set));
-
     result->head = domain;
-    result->next->head = image;
     Couple * current = couple;
 
     while (current != NULL){
-        domain->value =  current->x;
-        image->value = current->y;
+        if(!belongs_to(current->x, result->head)){
+            domain->value =  current->x;
+        }
         current = current->next;
         if(current == NULL){
             continue;
         }
         domain->next = (Node *) calloc(1, sizeof(Node));
-        image->next = (Node *) calloc(1, sizeof(Node));
         domain = domain->next;
+    }
+
+    return result;
+}
+
+Set *image(Couple *couple){
+    Set * result = (Set *)calloc(1, sizeof(Set));
+    Node * image = (Node *) calloc(1, sizeof(Node));
+    result->head = image;
+    Couple * current = couple;
+
+    while (current != NULL){
+        if(!belongs_to(current->y, result->head)){
+            image->value =  current->y;
+        }
+        current = current->next;
+        if(current == NULL){
+            continue;
+        }
+        image->next = (Node *) calloc(1, sizeof(Node));
         image = image->next;
     }
 
     return result;
+}
 
+int belongs_to(int value, Node *A) {
+    if(!A){
+        return 0;
+    }
+
+    Node *current = NULL;
+    current = A;
+    while (current) {
+        if (current->value == value) {
+            return 1;
+        }
+        current = current->next;
+    }
+    return 0;
 }
