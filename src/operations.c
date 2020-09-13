@@ -155,20 +155,29 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
 
 }
 
-Set *domain(Couple *couple){
+Set *domain_and_image(Couple *couple){
     Set * result = (Set *)calloc(1, sizeof(Set));
-    Node * elements = (Node *) calloc(1, sizeof(Node));
-    result->head = elements;
+
+    Node * domain = (Node *) calloc(1, sizeof(Node));
+    Node * image = (Node *) calloc(1, sizeof(Node));
+
+    result->next = (Set *) calloc(1, sizeof(Set));
+
+    result->head = domain;
+    result->next->head = image;
     Couple * current = couple;
 
     while (current != NULL){
-        elements->value =  current->x;
+        domain->value =  current->x;
+        image->value = current->y;
         current = current->next;
         if(current == NULL){
             continue;
         }
-        elements->next = (Node *) calloc(1, sizeof(Node));
-        elements = elements->next;
+        domain->next = (Node *) calloc(1, sizeof(Node));
+        image->next = (Node *) calloc(1, sizeof(Node));
+        domain = domain->next;
+        image = image->next;
     }
 
     return result;

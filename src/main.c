@@ -11,6 +11,6 @@ int main() {
     Line *input = process_input(PATH);
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
-    domain(equals(listOfSets->head, listOfSets->head));
+    domain_and_image(equals(listOfSets->head, listOfSets->head));
     return 0;
 }

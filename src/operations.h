@@ -16,6 +16,6 @@ Couple *less_than(Node *Ahead, Node *Bhead);
 Couple *equals(Node *Ahead, Node *Bhead);
 Couple *square_of(Node *Ahead, Node *Bhead);
 Couple *square_root_of(Node *Ahead, Node *Bhead);
-Set *domain(Couple *couple);
+Set *domain_and_image(Couple *couple);
 
 #endif //RELATIONS_OPERATIONS_H
