@@ -263,4 +263,25 @@ int is_total(Couple * couple, Node * elements){
     return 1;
 }
 
+int is_surjective(Couple * couple, Node * elements){
+    Couple * currentCouple = couple;
+    Node * currentNode = elements;
+    int flag = 0;
+
+    while (currentNode != NULL){
+        while (currentCouple != NULL){
+            if (currentCouple->y == currentNode->value){
+                flag = 1;
+                currentCouple = couple;
+                break;
+            }
+            currentCouple = currentCouple->next;
+        }
+        if(flag == 0){
+            return 0;
+        }
+        currentNode = currentNode->next;
+        flag = 0;
+    }
+    return 1;
 }

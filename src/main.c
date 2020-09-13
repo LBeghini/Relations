@@ -11,6 +11,10 @@ int main() {
     Line *input = process_input(PATH);
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
-    printf("%s", set_to_string(domain_and_image(equals(listOfSets->head, listOfSets->head))));
+    Relation * relation = (Relation*) calloc(1, sizeof(Relation));
+    relation->couple = equals(listOfSets->head, listOfSets->head);
+    relation->image = image(relation->couple);
+    relation->domain = domain(relation->couple);
+
     return 0;
 }
