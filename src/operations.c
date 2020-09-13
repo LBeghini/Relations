@@ -154,3 +154,23 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
     return result;
 
 }
+
+Set *domain(Couple *couple){
+    Set * result = (Set *)calloc(1, sizeof(Set));
+    Node * elements = (Node *) calloc(1, sizeof(Node));
+    result->head = elements;
+    Couple * current = couple;
+
+    while (current != NULL){
+        elements->value =  current->x;
+        current = current->next;
+        if(current == NULL){
+            continue;
+        }
+        elements->next = (Node *) calloc(1, sizeof(Node));
+        elements = elements->next;
+    }
+
+    return result;
+
+}

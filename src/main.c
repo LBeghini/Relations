@@ -11,6 +11,6 @@ int main() {
     Line *input = process_input(PATH);
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
-    printf("%s", couple_to_string(greater_than(listOfSets->head, listOfSets->next->head)));
+    domain(equals(listOfSets->head, listOfSets->head));
     return 0;
 }
