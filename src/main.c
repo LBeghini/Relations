@@ -11,6 +11,6 @@ int main() {
     Line *input = process_input(PATH);
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
-    square_root_of(listOfSets->head, listOfSets->next->head);
+    printf("%s", couple_to_string(greater_than(listOfSets->head, listOfSets->next->head)));
     return 0;
 }

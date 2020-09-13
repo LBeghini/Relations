@@ -32,6 +32,6 @@ Set *create_list_set(Set *head, Line *input);
 void process_nodes(Node *current, Line *charNumber);
 void populate(Set *empty, Line *charNumbers);
 char * set_to_string(Set *A);
-
+char * couple_to_string(Couple * couple);
 
 #endif //RELATIONS_SET_H
