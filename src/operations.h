@@ -12,6 +12,6 @@
 #include "global.h"
 
 Couple *greater_than(Node *A, Node *B);
-
+Couple *less_than(Node *Ahead, Node *Bhead);
 
 #endif //RELATIONS_OPERATIONS_H
