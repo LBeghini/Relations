@@ -28,6 +28,16 @@ typedef struct Set {
     struct Set * next;
 } Set;
 
+typedef struct Relation{
+    struct Couple * couple;
+    int functional;
+    int injective;
+    int surjective;
+    int total;
+    Set * domain;
+    Set * image;
+};
+
 Set *create_list_set(Set *head, Line *input);
 void process_nodes(Node *current, Line *charNumber);
 void populate(Set *empty, Line *charNumbers);
