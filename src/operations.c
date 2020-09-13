@@ -226,4 +226,18 @@ int is_functional(Couple * couple){
     return 1;
 }
 
+int is_injective(Couple * couple){
+    Couple * current = couple;
+    Couple * aux = couple;
+
+    while (aux != NULL){
+        while (current != NULL){
+            if(aux->y == current->y){
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
 }
