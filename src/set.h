@@ -36,7 +36,7 @@ typedef struct Relation{
     int total;
     Set * domain;
     Set * image;
-};
+} Relation;
 
 Set *create_list_set(Set *head, Line *input);
 void process_nodes(Node *current, Line *charNumber);

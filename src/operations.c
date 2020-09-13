@@ -202,8 +202,7 @@ int belongs_to(int value, Node *A) {
         return 0;
     }
 
-    Node *current = NULL;
-    current = A;
+    Node *current = A;
     while (current) {
         if (current->value == value) {
             return 1;
