@@ -211,3 +211,19 @@ int belongs_to(int value, Node *A) {
     }
     return 0;
 }
+
+int is_functional(Couple * couple){
+    Couple * current = couple;
+    Couple * aux = couple;
+
+    while (aux != NULL){
+        while (current != NULL){
+            if(aux->x == current->x){
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+}

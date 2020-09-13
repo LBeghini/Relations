@@ -19,5 +19,6 @@ Couple *square_root_of(Node *Ahead, Node *Bhead);
 Set *domain(Couple *couple);
 Set *image(Couple *couple);
 int belongs_to(int value, Node *A);
+int is_functional(Couple * couple);
 
 #endif //RELATIONS_OPERATIONS_H
