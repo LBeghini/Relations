@@ -58,3 +58,20 @@ char * couple_to_string(Couple * couple){
     strcpy((result+(int)strlen(result)-1), "\0");
     return result;
 }
+
+char * set_to_string(Set *A){
+    if(!A->head){
+        return "{ }";
+    }
+    Node *current = A->head;
+    char * result = (char*) malloc(sizeof(char));
+    strcpy(result, "{");
+    char * str = (char*) malloc(sizeof(char));
+    while(current){
+        sprintf(str, "%d, ", current->value);
+        strcat(result, str);
+        current = current->next;
+    }
+    strcpy((result+strlen(result)-2), "}\0");
+    return result;
+}
