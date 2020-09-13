@@ -11,11 +11,11 @@
 #include <stdlib.h>
 #include "global.h"
 
-Couple *greater_than(Node *Ahead, Node *Bhead);
-Couple *less_than(Node *Ahead, Node *Bhead);
-Couple *equals(Node *Ahead, Node *Bhead);
-Couple *square_of(Node *Ahead, Node *Bhead);
-Couple *square_root_of(Node *Ahead, Node *Bhead);
+Couple *set_greater_than(Node *Ahead, Node *Bhead);
+Couple *set_less_than(Node *Ahead, Node *Bhead);
+Couple *set_equals(Node *Ahead, Node *Bhead);
+Couple *set_square_of(Node *Ahead, Node *Bhead);
+Couple *set_square_root_of(Node *Ahead, Node *Bhead);
 Node *domain(Couple *couple);
 Node *image(Couple *couple);
 int belongs_to(int value, Node *A);
