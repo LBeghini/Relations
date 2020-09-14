@@ -46,6 +46,7 @@ char * int_to_bool(int input){
     }
 }
 void solve(char* input){
+    remove_spaces(input);
     if(validate(input)){
         Relation * solution = generate_relation(prepare_operation_list(input));
         printf("------------------------------------------------\n");
