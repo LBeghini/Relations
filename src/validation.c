@@ -28,18 +28,21 @@ int check_operators(char *str) {
 }
 
 int check_operands(char *str){
+    int validation = 1;
     for (int i = 0; i < strlen(str); ++i) {
         char current = *(str+i);
         if (!is_odd(i)) {
             if(current>='A' && current<='Z'){
-                if(contains_in_sets(current)){
-                    return 1;
+                if(!contains_in_sets(current)){
+                    validation = 0;
                 }
+            }else{
+                validation = 0;
             }
         }
     }
 
-    return 0;
+    return validation;
 }
 
 

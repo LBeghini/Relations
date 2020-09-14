@@ -91,7 +91,6 @@ void remove_spaces_from_lines(Line *head){
         remove_spaces(head->value);
         remove_spaces_from_lines(head->next);
     }
-
     return;
 }
 
