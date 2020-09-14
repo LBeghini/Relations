@@ -11,7 +11,7 @@
 int check_operators(char *str);
 int check_operands(char *str);
 int is_odd(int num);
-int validate(char *str);int contains_in_elements(char target);
-int contains_in_sets(char target) ;
+int validate(char *str);
+int contains_in_sets(char target);
 
 #endif //RELATIONS_VALIDATION_H
