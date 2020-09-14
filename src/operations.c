@@ -5,7 +5,7 @@
 #include "operations.h"
 #include <math.h>
 
-Couple *set_greater_than(Node *Ahead, Node *Bhead) {
+Couple *greater_than(Node *Ahead, Node *Bhead) {
     Couple * result = (Couple *)calloc(1, sizeof(Couple));
     Couple * current = result;
     Node * A = Ahead;
@@ -35,7 +35,7 @@ Couple *set_greater_than(Node *Ahead, Node *Bhead) {
 
 }
 
-Couple *set_less_than(Node *Ahead, Node *Bhead){
+Couple *less_than(Node *Ahead, Node *Bhead){
     Couple * result = (Couple *)calloc(1, sizeof(Couple));
     Couple * current = result;
     Node * A = Ahead;
@@ -65,7 +65,7 @@ Couple *set_less_than(Node *Ahead, Node *Bhead){
 
 }
 
-Couple *set_equals(Node *Ahead, Node *Bhead){
+Couple *equals(Node *Ahead, Node *Bhead){
     Couple * result = (Couple *)calloc(1, sizeof(Couple));
     Couple * current = result;
     Node * A = Ahead;
@@ -95,7 +95,7 @@ Couple *set_equals(Node *Ahead, Node *Bhead){
 
 }
 
-Couple *set_square_of(Node *Ahead, Node *Bhead){
+Couple *square_of(Node *Ahead, Node *Bhead){
     Couple * result = (Couple *)calloc(1, sizeof(Couple));
     Couple * current = result;
     Node * A = Ahead;
