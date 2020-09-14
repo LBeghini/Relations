@@ -47,8 +47,6 @@ Set *create_list_set(Set *head, Line *input);
 void process_nodes(Node *current, Line *charNumber);
 void populate(Set *empty, Line *charNumbers);
 
-char * couple_to_string(Couple * couple);
-char * node_to_string(Node * elements);
 Node * copy_of_node(Node *A);
 Set * copy_of_set(Set * A);
 Set * find_set(char* name);

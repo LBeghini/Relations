@@ -48,41 +48,6 @@ Set *create_list_set(Set *head, Line *input) {
     return head;
 }
 
-char * couple_to_string(Couple * couple){
-    if(couple == NULL){
-        return "< >";
-    }
-    Couple * current = couple;
-    char * result = (char*) calloc(2, sizeof(char));
-    char * aux = (char*) calloc(7, sizeof(char));
-    while(current){
-        result = realloc(result, sizeof(char) * ((int)strlen(result) + 7 ));
-        sprintf(aux, "<%d,%d>,", current->x, current->y);
-        strcat(result, aux);
-        current = current->next;
-    }
-    strcpy((result+(int)strlen(result)-1), "\0");
-    return result;
-}
-
-char * node_to_string(Node * elements){
-    if(!elements){
-        return "{ }";
-    }
-
-    Node *current = elements;
-    char * result = (char*) malloc(sizeof(char));
-    strcpy(result, "{");
-    char * str = (char*) malloc(sizeof(char));
-    while(current){
-        sprintf(str, "%d, ", current->value);
-        strcat(result, str);
-        current = current->next;
-    }
-    strcpy((result+strlen(result)-2), "}\0");
-    return result;
-}
-
 Set * copy_of_set(Set * A){
     Set * current = A;
     Set * copy = (Set*) calloc(1, sizeof(Set));

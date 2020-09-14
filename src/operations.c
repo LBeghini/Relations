@@ -125,10 +125,12 @@ Couple *greater_than(Node *Ahead, Node *Bhead) {
     Node * A = Ahead;
     Node * B = Bhead;
     int count = 0;
+    int is_null = 1;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value > B->value){
+                is_null = 0;
                 if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
@@ -147,6 +149,9 @@ Couple *greater_than(Node *Ahead, Node *Bhead) {
         A = A->next;
     }
 
+    if(is_null){
+        return NULL;
+    }
     return result;
 
 }
@@ -157,10 +162,12 @@ Couple *less_than(Node *Ahead, Node *Bhead){
     Node * A = Ahead;
     Node * B = Bhead;
     int count = 0;
+    int is_null = 1;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value < B->value){
+                is_null = 0;
                 if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
@@ -179,6 +186,9 @@ Couple *less_than(Node *Ahead, Node *Bhead){
         A = A->next;
     }
 
+    if(is_null){
+        return NULL;
+    }
     return result;
 
 }
@@ -189,10 +199,12 @@ Couple *equals(Node *Ahead, Node *Bhead){
     Node * A = Ahead;
     Node * B = Bhead;
     int count = 0;
+    int is_null = 1;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value == B->value){
+                is_null = 0;
                 if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
@@ -211,6 +223,9 @@ Couple *equals(Node *Ahead, Node *Bhead){
         A = A->next;
     }
 
+    if (is_null){
+        return 0;
+    }
     return result;
 
 }
@@ -221,10 +236,12 @@ Couple *square_of(Node *Ahead, Node *Bhead){
     Node * A = Ahead;
     Node * B = Bhead;
     int count = 0;
+    int is_null = 1;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value == (B->value * B->value)){
+                is_null = 0;
                 if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
@@ -241,6 +258,10 @@ Couple *square_of(Node *Ahead, Node *Bhead){
         }
         B = Bhead;
         A = A->next;
+    }
+
+    if(is_null){
+        return NULL;
     }
 
     return result;
@@ -252,10 +273,12 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
     Node * A = Ahead;
     Node * B = Bhead;
     int count = 0;
+    int is_null = 1;
 
     while (A != NULL) {
         while (B != NULL){
             if((double)A->value == sqrt(B->value)){
+                is_null = 0;
                 if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
@@ -272,6 +295,10 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
         }
         B = Bhead;
         A = A->next;
+    }
+
+    if(is_null){
+        return NULL;
     }
 
     return result;
@@ -285,6 +312,10 @@ Node *domain(Couple *couple){
     Couple * currentCouple = couple;
     Node * currentNode = domain;
     int count = 0;
+
+    if(!couple){
+        return NULL;
+    }
 
     while (currentCouple != NULL){
         if(!belongs_to(currentCouple->x, domain)) {
@@ -311,6 +342,10 @@ Node *image(Couple *couple){
     Couple * currentCouple = couple;
     Node * currentNode = image;
     int count = 0;
+
+    if(!couple){
+        return NULL;
+    }
 
     while (currentCouple != NULL){
         if(!belongs_to(currentCouple->y, image)) {

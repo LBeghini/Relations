@@ -45,15 +45,55 @@ char * int_to_bool(int input){
         return "false";
     }
 }
+
+void print_couple(Couple * couple){
+    if(couple == NULL){
+        printf("< >\n");
+        return;
+    }
+    Couple * current = couple;
+    while(current){
+        printf("<%d,%d>,", current->x, current->y);
+        if(current->next == NULL){
+            printf("<%d,%d>", current->x, current->y);
+            current = current->next;
+            continue;
+        }
+        current = current->next;
+    }
+    printf("\n");
+}
+
+void print_node(Node * elements){
+    if(!elements){
+        printf("{ }\n");
+        return;
+    }
+
+    Node *current = elements;
+    printf("{");
+    while(current){
+        printf("%d, ", current->value);
+        if(current->next == NULL){
+            printf("%d}", current->value);
+            current = current->next;
+            continue;
+        }
+        current = current->next;
+    }
+    printf("\n");
+}
 void solve(char* input){
     remove_spaces(input);
     if(validate(input)){
         Relation * solution = generate_relation(prepare_operation_list(input));
         printf("------------------------------------------------\n");
         printf("R: %c -> %c\n", solution->initial->name, solution->final->name);
-        printf("%s\n", couple_to_string(solution->couple));
-        printf("Domain: %s\n", node_to_string(solution->domain));
-        printf("Image: %s\n", node_to_string(solution->image));
+        print_couple(solution->couple);
+        printf("Domain: ");
+        print_node(solution->domain);
+        printf("Image: ");
+        print_node(solution->image);
         printf("Functional: %s\n", int_to_bool(solution->functional));
         printf("Injective: %s\n", int_to_bool(solution->injective));
         printf("Total: %s\n", int_to_bool(solution->total));
