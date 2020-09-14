@@ -65,11 +65,12 @@ char * couple_to_string(Couple * couple){
     return result;
 }
 
-char * set_to_string(Set *A){
-    if(!A->head){
+char * node_to_string(Node * elements){
+    if(!elements){
         return "{ }";
     }
-    Node *current = A->head;
+
+    Node *current = elements;
     char * result = (char*) malloc(sizeof(char));
     strcpy(result, "{");
     char * str = (char*) malloc(sizeof(char));

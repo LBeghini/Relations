@@ -111,6 +111,10 @@ Relation * generate_relation(List * op_list){
     result->functional = is_functional(result->couple);
     result->injective = is_injective(result->couple);
 
+    result->monomorphism = result->total && result->injective;
+    result->epimorphism = result->functional && result->surjective;
+    result->isomorphism = result->monomorphism && result->epimorphism;
+
     return result;
 }
 
@@ -329,6 +333,7 @@ Node *image(Couple *couple){
 
 
 int is_functional(Couple * couple){
+    //only one x
     Couple * current = couple;
     Couple * aux = couple;
     int count = 0;
@@ -351,6 +356,7 @@ int is_functional(Couple * couple){
 }
 
 int is_injective(Couple * couple){
+    //only one y
     Couple * current = couple;
     Couple * aux = couple;
     int count = 0;
@@ -373,6 +379,7 @@ int is_injective(Couple * couple){
 }
 
 int is_total(Node * domain, Node * initial){
+    //domain == initial; every x appears
     Node * currentDomain = domain;
     Node * currentElement = initial;
     int flag = 0;
@@ -396,6 +403,7 @@ int is_total(Node * domain, Node * initial){
 }
 
 int is_surjective(Node * image, Node * final){
+    //image == final; every y appears
     Node * currentImage = image;
     Node * currentElement = final;
     int flag = 0;

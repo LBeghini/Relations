@@ -5,50 +5,126 @@
 #include "global.h"
 #define PATH "..\\set.txt"
 #include "operations.h"
+#include "validation.h"
+
+void clear_console(){
+#if defined _WIN32
+    system("cls");
+#elif defined (LINUX) || defined(gnu_linux) || defined(linux)
+    system("clear");
+#elif defined (APPLE)
+    system("clear");
+#endif
+}
+
+void print_set(Set* sets){
+    printf("       %c = {", sets->name);
+    Node* current = sets->head;
+    while (current){
+        printf("%d", current->value);
+        if(current->next){
+            printf(", ");
+        } else{
+            printf("}\n");
+        }
+        current = current->next;
+    }
+}
+
+void print_sets(Set* set){
+    while (set){
+        print_set(set);
+        set = set->next;
+    }
+}
+
+char * int_to_bool(int input){
+    if(input){
+        return "true";
+    } else{
+        return "false";
+    }
+}
+void solve(char* input){
+    if(validate(input)){
+        Relation * solution = generate_relation(prepare_operation_list(input));
+        printf("------------------------------------------------\n");
+        printf("R: %c -> %c\n", solution->initial->name, solution->final->name);
+        printf("%s\n", couple_to_string(solution->couple));
+        printf("Domain: %s\n", node_to_string(solution->domain));
+        printf("Image: %s\n", node_to_string(solution->image));
+        printf("Functional: %s\n", int_to_bool(solution->functional));
+        printf("Injective: %s\n", int_to_bool(solution->injective));
+        printf("Total: %s\n", int_to_bool(solution->total));
+        printf("Surjective: %s\n", int_to_bool(solution->surjective));
+
+        if(solution->isomorphism){
+            printf("Isomorphism\n");
+        }else if(solution->monomorphism){
+            printf("Monomorphism\n");
+        }else if(solution->epimorphism){
+            printf("Epimorphism\n");
+        }
+
+        printf("------------------------------------------------\n");
+
+    } else{
+        printf("------------------------------------------------\n");
+        printf("ERROR: OPERATION NOT VALID\n");
+        printf("------------------------------------------------\n");
+    }
+
+}
+
 
 
 int main() {
     Line *input = process_input(PATH);
+
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
 
-//    Relation * R = (Relation*) calloc(1, sizeof(Relation));
-//    R->initial = listOfSets;
-//    R->final = listOfSets->next;
-//    R->couple = less_than(R->initial->head, R->final->head);
-//    R->image = image(R->couple);
-//    R->domain = domain(R->couple);
-//    R->total = is_total(R->domain, R->initial->head);
-//    R->surjective = is_surjective(R->image, R->final->head);
-//    R->functional = is_functional(R->couple);
-//    R->injective = is_injective(R->couple);
-//
-//
-//    Relation * S = (Relation*) calloc(1, sizeof(Relation));
-//    S->initial = listOfSets->next;
-//    S->final = listOfSets->next->next;
-//    S->couple = less_than(S->initial->head, S->final->head);
-//    S->image = image(S->couple);
-//    S->domain = domain(S->couple);
-//    S->total = is_total(S->domain, S->initial->head);
-//    S->surjective = is_surjective(S->image, S->final->head);
-//    S->functional = is_functional(S->couple);
-//    S->injective = is_injective(S->couple);
-//
-//    Relation * RS = (Relation*) calloc(1, sizeof(Relation));
-//    RS->initial = R->initial;
-//    RS->final = S->final;
-//    RS->couple = compose(R->couple, S->couple);
-//    RS->image = image(RS->couple);
-//    RS->domain = domain(RS->couple);
-//    RS->total = is_total(RS->domain, RS->initial->head);
-//    RS->surjective = is_surjective(RS->image, RS->final->head);
-//    RS->functional = is_functional(RS->couple);
-//    RS->injective = is_injective(RS->couple);
+#ifndef DEBUG
+    clear_console();
+    printf("  _____      _       _   _                 \n"
+           " |  __ \\    | |     | | (_)                \n"
+           " | |__) |___| | __ _| |_ _  ___  _ __  ___ \n"
+           " |  _  // _ \\ |/ _` | __| |/ _ \\| '_ \\/ __|\n"
+           " | | \\ \\  __/ | (_| | |_| | (_) | | | \\__ \\\n"
+           " |_|  \\_\\___|_|\\__,_|\\__|_|\\___/|_| |_|___/\n"
+           "                                           \n"
+           "                                           ");
 
-    char * test = "A<B";
 
-    Relation * aa = generate_relation(prepare_operation_list(test));
+    printf("\nPRESS ANY KEY TO START");
+    getch();
+
+    char e = ' ';
+
+    while (e != 'e'){
+        clear_console();
+        printf("------------------------------------------------\n");
+        printf(" SETS:                                          \n");
+        print_sets(listOfSets);
+        printf("\n");
+        printf("------------------------------------------------\n");
+        printf(" OPERATIONS:\n");
+        printf("       Greater than:......................... >\n"
+               "       Less than:............................ <\n"
+               "       Equals:............................... =\n"
+               "       Square of:............................ *\n"
+               "       Square root of:....................... /\n\n"
+               );
+        printf("------------------------------------------------\n");
+        printf("OPERATION STRING: ");
+        char* ops = (char*)calloc(10, sizeof(char));
+        gets(ops);
+        solve(ops);
+        printf("\nPRESS ANY KEY TO CONTINUE OR e TO EXIT");
+        e = getch();
+    }
+#endif
+
 
     return 0;
 }
