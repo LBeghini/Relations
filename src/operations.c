@@ -10,14 +10,16 @@ Couple *greater_than(Node *Ahead, Node *Bhead) {
     Couple * current = result;
     Node * A = Ahead;
     Node * B = Bhead;
+    int count = 0;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value > B->value){
-                if(!current->y || !current->x){
+                if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
                     B = B->next;
+                    count = 1;
                     continue;
                 }
                 current->next = (Couple *) calloc(1, sizeof(Couple));
@@ -40,14 +42,16 @@ Couple *less_than(Node *Ahead, Node *Bhead){
     Couple * current = result;
     Node * A = Ahead;
     Node * B = Bhead;
+    int count = 0;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value < B->value){
-                if(!current->y || !current->x){
+                if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
                     B = B->next;
+                    count = 1;
                     continue;
                 }
                 current->next = (Couple *) calloc(1, sizeof(Couple));
@@ -70,14 +74,16 @@ Couple *equals(Node *Ahead, Node *Bhead){
     Couple * current = result;
     Node * A = Ahead;
     Node * B = Bhead;
+    int count = 0;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value == B->value){
-                if(!current->y || !current->x){
+                if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
                     B = B->next;
+                    count = 1;
                     continue;
                 }
                 current->next = (Couple *) calloc(1, sizeof(Couple));
@@ -100,14 +106,16 @@ Couple *square_of(Node *Ahead, Node *Bhead){
     Couple * current = result;
     Node * A = Ahead;
     Node * B = Bhead;
+    int count = 0;
 
     while (A != NULL) {
         while (B != NULL){
             if(A->value == (B->value * B->value)){
-                if(!current->y || !current->x){
+                if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
                     B = B->next;
+                    count = 1;
                     continue;
                 }
                 current->next = (Couple *) calloc(1, sizeof(Couple));
@@ -122,7 +130,6 @@ Couple *square_of(Node *Ahead, Node *Bhead){
     }
 
     return result;
-
 }
 
 Couple *square_root_of(Node *Ahead, Node *Bhead){
@@ -130,14 +137,16 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
     Couple * current = result;
     Node * A = Ahead;
     Node * B = Bhead;
+    int count = 0;
 
     while (A != NULL) {
         while (B != NULL){
             if((double)A->value == sqrt(B->value)){
-                if(!current->y || !current->x){
+                if(count == 0){
                     current->x = A->value;
                     current->y = B->value;
                     B = B->next;
+                    count = 1;
                     continue;
                 }
                 current->next = (Couple *) calloc(1, sizeof(Couple));
@@ -154,6 +163,7 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
     return result;
 
 }
+
 
 Node *domain(Couple *couple){
     Node * domain = (Node *) calloc(1, sizeof(Node));
@@ -204,6 +214,7 @@ Node *image(Couple *couple){
 
     return image;
 }
+
 
 int belongs_to(int value, Node *A) {
     if(!A){
