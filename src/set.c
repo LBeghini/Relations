@@ -131,6 +131,7 @@ Set * find_set(char* name){
     }
 }
 
+
 int belongs_to(int value, Node *A) {
     if(!A){
         return 0;

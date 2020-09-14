@@ -89,6 +89,31 @@ Couple * solve_operation_list(List * current){
     current->relation->couple = compose(current->relation->couple, solve_operation_list(current->next));
 }
 
+List * find_tail(List * list_head){
+    List * current = list_head;
+    while(current->next != NULL){
+        current = current->next;
+    }
+    return current;
+}
+
+Relation * generate_relation(List * op_list){
+    Relation * result = (Relation*) calloc(1, sizeof(Relation));
+    result->initial = op_list->relation->initial;
+    result->couple = solve_operation_list(op_list);
+    result->final = find_tail(op_list)->relation->final;
+
+    result->image = image(result->couple);
+    result->domain = domain(result->couple);
+
+    result->total = is_total(result->domain, result->initial->head);
+    result->surjective = is_surjective(result->image, result->final->head);
+    result->functional = is_functional(result->couple);
+    result->injective = is_injective(result->couple);
+
+    return result;
+}
+
 
 Couple *greater_than(Node *Ahead, Node *Bhead) {
     Couple * result = (Couple *)calloc(1, sizeof(Couple));

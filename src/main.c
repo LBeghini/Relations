@@ -46,9 +46,9 @@ int main() {
 //    RS->functional = is_functional(RS->couple);
 //    RS->injective = is_injective(RS->couple);
 
-    char * test = "A<B<C";
+    char * test = "A<B";
 
-    Couple * aa = solve_operation_list(prepare_operation_list(test));
+    Relation * aa = generate_relation(prepare_operation_list(test));
 
     return 0;
 }

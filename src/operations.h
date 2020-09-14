@@ -19,6 +19,7 @@ typedef struct List {
 List *prepare_operation_list(char *str);
 void fill_operation_list(char *str, List * current);
 Couple * solve_operation_list(List * current);
+Relation * generate_relation(List * op_list);
 
 
 Couple *greater_than(Node *Ahead, Node *Bhead);
