@@ -11,6 +11,16 @@
 #include <stdlib.h>
 #include "global.h"
 
+typedef struct List {
+    struct Relation *relation;
+    struct List *next;
+} List;
+
+List *prepare_operation_list(char *str);
+void fill_operation_list(char *str, List * current);
+Couple * solve_operation_list(List * current);
+
+
 Couple *greater_than(Node *Ahead, Node *Bhead);
 Couple *less_than(Node *Ahead, Node *Bhead);
 Couple *equals(Node *Ahead, Node *Bhead);
@@ -20,7 +30,6 @@ Couple *square_root_of(Node *Ahead, Node *Bhead);
 Node *domain(Couple *couple);
 Node *image(Couple *couple);
 
-int belongs_to(int value, Node *A);
 int is_injective(Couple * couple);
 int is_functional(Couple * couple);
 int is_total(Node * domain, Node * initial);

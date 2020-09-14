@@ -3,7 +3,92 @@
 //
 
 #include "operations.h"
+#include "set.h"
 #include <math.h>
+
+Relation * create_relation(char* op, char * initial, char * final){
+    Relation * result = (Relation*) calloc(1, sizeof(Relation));
+    result->initial = find_set(initial);
+    result->final = find_set(final);
+    if(strcmp(op, "<") == 0){
+        result->couple = less_than(result->initial->head, result->final->head);
+    }
+    if(strcmp(op, ">") == 0){
+        result->couple = greater_than(result->initial->head, result->final->head);
+    }
+    if(strcmp(op, "=") == 0){
+        result->couple = equals(result->initial->head, result->final->head);
+    }
+    if(strcmp(op, "*") == 0){
+        result->couple = square_of(result->initial->head, result->final->head);
+    }
+    if(strcmp(op, "/") == 0){
+        result->couple = square_root_of(result->initial->head, result->final->head);
+    }
+//    result->image = image(result->couple);
+//    result->domain = domain(result->couple);
+//
+//    result->total = is_total(result->domain, result->initial->head);
+//    result->surjective = is_surjective(result->image, result->final->head);
+//    result->functional = is_functional(result->couple);
+//    result->injective = is_injective(result->couple);
+
+    return result;
+}
+
+void fill_operation_list(char *str, List * current){
+
+    char *buff = (char *) malloc(sizeof(char) * (int)(strlen(str) +1) );
+    strcpy(buff, str);
+
+    char * firstHalf = buff;
+    char * secondHalf;
+
+    char *operand = (char*) malloc(strlen(buff) + 1);
+    strcpy(operand, strpbrk(buff, OPERANDS));       //<B<C
+    *(operand+1) = '\0';                            //<
+
+    secondHalf = strchr(buff, *operand);            //<B<C
+    *secondHalf = '\0';                             //first half == A
+    secondHalf = secondHalf+1;                      //B < C
+
+    char *final = (char *) malloc(sizeof(char) * (int)(strlen(str) +1) );
+    strcpy(final, secondHalf);
+    *(final+1) = '\0';                              //teoricamente, == B
+
+    current->relation = create_relation(operand, firstHalf, final);
+    if (strlen(secondHalf) == 1) {
+        return;
+    }
+    current->next = (List*) malloc(sizeof(List));
+    current->next->next = NULL;
+    current->next->relation = NULL;
+    fill_operation_list(secondHalf, current->next);
+
+}
+
+List *prepare_operation_list(char *str){
+    char *buff = (char *) malloc(sizeof(char) * (int) (strlen(str)+1));
+    strcpy(buff, str);
+
+    List *result = (List*) malloc(sizeof(List));
+    result->relation = NULL;
+    result->next = NULL;
+
+    fill_operation_list(buff, result);
+
+    return result;
+
+}
+
+Couple * solve_operation_list(List * current){
+    if(current->next == NULL){
+        return current->relation->couple;
+    }
+
+    current->relation->couple = compose(current->relation->couple, solve_operation_list(current->next));
+}
+
 
 Couple *greater_than(Node *Ahead, Node *Bhead) {
     Couple * result = (Couple *)calloc(1, sizeof(Couple));
@@ -216,21 +301,6 @@ Node *image(Couple *couple){
 }
 
 
-int belongs_to(int value, Node *A) {
-    if(!A){
-        return 0;
-    }
-
-    Node *current = A;
-    while (current) {
-        if (current->value == value) {
-            return 1;
-        }
-        current = current->next;
-    }
-    return 0;
-}
-
 int is_functional(Couple * couple){
     Couple * current = couple;
     Couple * aux = couple;
@@ -321,7 +391,6 @@ int is_surjective(Node * image, Node * final){
     return 1;
 }
 
-
 Couple *compose(Couple *initialHead, Couple *finalHead){
     Couple * result = (Couple *)calloc(1, sizeof(Couple));
     Couple * current = result;
@@ -329,26 +398,31 @@ Couple *compose(Couple *initialHead, Couple *finalHead){
     Couple * final = finalHead;
     int count = 0;
 
+    if(initialHead == NULL || finalHead == NULL){
+        return NULL;
+    }
+
     while (initial != NULL) {
         while (final != NULL){
             if(initial->y == final->x){
-                if(count == 0){
+                if(!already_exists(initial->x, final->y, result)){
+                    if(count == 0){
+                        current->x = initial->x;
+                        current->y = final->y;
+                        final = final->next;
+                        count = 1;
+                        continue;
+                    }
+                    current->next = (Couple *) calloc(1, sizeof(Couple));
+                    current = current->next;
                     current->x = initial->x;
                     current->y = final->y;
-                    final = final->next;
-                    count = 1;
-                    continue;
                 }
-                current->next = (Couple *) calloc(1, sizeof(Couple));
-                current = current->next;
-                current->x = initial->x;
-                current->y = final->y;
             }
             final = final->next;
         }
         final = finalHead;
         initial = initial->next;
     }
-
     return result;
 }

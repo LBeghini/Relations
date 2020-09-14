@@ -6,6 +6,7 @@
 #define RELATIONS_GLOBAL_H
 
 #include "set.h"
+#define OPERANDS "><=*/"
 
 Set *listOfSets;
 
