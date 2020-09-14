@@ -320,3 +320,35 @@ int is_surjective(Node * image, Node * final){
     }
     return 1;
 }
+
+
+Couple *compose(Couple *initialHead, Couple *finalHead){
+    Couple * result = (Couple *)calloc(1, sizeof(Couple));
+    Couple * current = result;
+    Couple * initial = initialHead;
+    Couple * final = finalHead;
+    int count = 0;
+
+    while (initial != NULL) {
+        while (final != NULL){
+            if(initial->y == final->x){
+                if(count == 0){
+                    current->x = initial->x;
+                    current->y = final->y;
+                    final = final->next;
+                    count = 1;
+                    continue;
+                }
+                current->next = (Couple *) calloc(1, sizeof(Couple));
+                current = current->next;
+                current->x = initial->x;
+                current->y = final->y;
+            }
+            final = final->next;
+        }
+        final = finalHead;
+        initial = initial->next;
+    }
+
+    return result;
+}

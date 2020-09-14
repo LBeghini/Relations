@@ -19,10 +19,12 @@ Couple *square_root_of(Node *Ahead, Node *Bhead);
 
 Node *domain(Couple *couple);
 Node *image(Couple *couple);
+
 int belongs_to(int value, Node *A);
 int is_injective(Couple * couple);
 int is_functional(Couple * couple);
 int is_total(Node * domain, Node * initial);
 int is_surjective(Node * image, Node * final);
 
+Couple *compose(Couple *initialHead, Couple *finalHead);
 #endif //RELATIONS_OPERATIONS_H

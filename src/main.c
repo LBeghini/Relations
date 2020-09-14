@@ -15,7 +15,7 @@ int main() {
     Relation * R = (Relation*) calloc(1, sizeof(Relation));
     R->initial = listOfSets;
     R->final = listOfSets->next;
-    R->couple = square_root_of(R->initial->head, R->final->head);
+    R->couple = less_than(R->initial->head, R->final->head);
     R->image = image(R->couple);
     R->domain = domain(R->couple);
     R->total = is_total(R->domain, R->initial->head);
@@ -27,7 +27,7 @@ int main() {
     Relation * S = (Relation*) calloc(1, sizeof(Relation));
     S->initial = listOfSets->next;
     S->final = listOfSets->next->next;
-    S->couple = square_root_of(S->initial->head, S->final->head);
+    S->couple = less_than(S->initial->head, S->final->head);
     S->image = image(S->couple);
     S->domain = domain(S->couple);
     S->total = is_total(S->domain, S->initial->head);
@@ -35,6 +35,16 @@ int main() {
     S->functional = is_functional(S->couple);
     S->injective = is_injective(S->couple);
 
+    Relation * RS = (Relation*) calloc(1, sizeof(Relation));
+    RS->initial = R->initial;
+    RS->final = S->final;
+    RS->couple = compose(R->couple, S->couple);
+    RS->image = image(RS->couple);
+    RS->domain = domain(RS->couple);
+    RS->total = is_total(RS->domain, RS->initial->head);
+    RS->surjective = is_surjective(RS->image, RS->final->head);
+    RS->functional = is_functional(RS->couple);
+    RS->injective = is_injective(RS->couple);
 
     return 0;
 }
