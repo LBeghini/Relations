@@ -276,7 +276,8 @@ Couple *square_root_of(Node *Ahead, Node *Bhead){
 
 
 Node *domain(Couple *couple){
-    Node * domain = (Node *) calloc(1, sizeof(Node));
+    Node * domain = (Node *) malloc(sizeof(Node));
+    domain->next = NULL;
     Couple * currentCouple = couple;
     Node * currentNode = domain;
     int count = 0;
@@ -301,7 +302,8 @@ Node *domain(Couple *couple){
 }
 
 Node *image(Couple *couple){
-    Node * image = (Node *) calloc(1, sizeof(Node));
+    Node * image = (Node *) malloc(sizeof(Node));
+    image->next = NULL;
     Couple * currentCouple = couple;
     Node * currentNode = image;
     int count = 0;
