@@ -53,12 +53,12 @@ void print_couple(Couple * couple){
     }
     Couple * current = couple;
     while(current){
-        printf("<%d,%d>,", current->x, current->y);
         if(current->next == NULL){
             printf("<%d,%d>", current->x, current->y);
             current = current->next;
             continue;
         }
+        printf("<%d,%d>,", current->x, current->y);
         current = current->next;
     }
     printf("\n");
@@ -73,12 +73,12 @@ void print_node(Node * elements){
     Node *current = elements;
     printf("{");
     while(current){
-        printf("%d, ", current->value);
         if(current->next == NULL){
             printf("%d}", current->value);
             current = current->next;
             continue;
         }
+        printf("%d, ", current->value);
         current = current->next;
     }
     printf("\n");

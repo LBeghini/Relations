@@ -25,13 +25,6 @@ Relation * create_relation(char* op, char * initial, char * final){
     if(strcmp(op, "/") == 0){
         result->couple = square_root_of(result->initial->head, result->final->head);
     }
-//    result->image = image(result->couple);
-//    result->domain = domain(result->couple);
-//
-//    result->total = is_total(result->domain, result->initial->head);
-//    result->surjective = is_surjective(result->image, result->final->head);
-//    result->functional = is_functional(result->couple);
-//    result->injective = is_injective(result->couple);
 
     return result;
 }
