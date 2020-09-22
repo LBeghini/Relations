@@ -11,12 +11,12 @@ typedef struct Line{
 } Line;
 
 
-char *parse(char *path);
+char *parse();
 Line * split(char * str, char *separator);
 void print_lines(Line *head);
 void remove_spaces_from_lines(Line *head);
 void remove_spaces(char * s);
-Line *process_input(char *path);
+Line *process_input();
 Line* get_numbers(char *s);
 
 #endif //RELATIONS_FILEIO_H

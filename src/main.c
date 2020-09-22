@@ -3,7 +3,6 @@
 #include "fileIO.h"
 #include <conio.h>
 #include "global.h"
-#define PATH "..\\set.txt"
 #include "operations.h"
 #include "validation.h"
 
@@ -120,7 +119,7 @@ void solve(char* input){
 
 
 int main() {
-    Line *input = process_input(PATH);
+    Line *input = process_input();
 
     listOfSets = (Set*) malloc(sizeof(Set));
     listOfSets = create_list_set(listOfSets, input);
