@@ -304,13 +304,23 @@ Node *domain(Couple *couple){
     domain->next = NULL;
     Couple * currentCouple = couple;
     Node * currentNode = domain;
+    Node * empty = NULL;
     int count = 0;
+    int flag = 0;
 
     if(!couple){
         return NULL;
     }
 
     while (currentCouple != NULL){
+        if(currentCouple->x == 0){
+            empty = (Node*) malloc(sizeof(Node));
+            empty->value = 0;
+            empty->next = NULL;
+            flag = 1;
+            currentCouple = currentCouple->next;
+            continue;
+        }
         if(!belongs_to(currentCouple->x, domain)) {
             if (count == 0){
                 domain->value = currentCouple->x;
@@ -323,9 +333,11 @@ Node *domain(Couple *couple){
             currentNode = currentNode->next;
         }
         currentCouple = currentCouple->next;
-
     }
-
+    if (flag) {
+        empty->next = domain;
+        return empty;
+    }
     return domain;
 }
 
@@ -334,13 +346,23 @@ Node *image(Couple *couple){
     image->next = NULL;
     Couple * currentCouple = couple;
     Node * currentNode = image;
+    Node * empty = NULL;
     int count = 0;
+    int flag = 0;
 
     if(!couple){
         return NULL;
     }
 
     while (currentCouple != NULL){
+        if(currentCouple->x == 0){
+            empty = (Node*) malloc(sizeof(Node));
+            empty->value = 0;
+            empty->next = NULL;
+            flag = 1;
+            currentCouple = currentCouple->next;
+            continue;
+        }
         if(!belongs_to(currentCouple->y, image)) {
             if (count == 0){
                 image->value = currentCouple->y;
@@ -354,6 +376,11 @@ Node *image(Couple *couple){
         }
         currentCouple = currentCouple->next;
 
+    }
+
+    if (flag) {
+        empty->next = image;
+        return empty;
     }
 
     return image;
