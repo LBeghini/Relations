@@ -32,7 +32,6 @@ project
     │   
 ```
 
->If the program didn't find the set.exe file, it reports an error and closes.
 
 ### Formatting ```set.txt``` 
 
@@ -46,7 +45,7 @@ A = {1, 87, 4, -1, 43}
   
 >Spaces are disconsidered.  
 
-## Usages
+## Usage
 When the program starts, it shows the Sets founded in the file ```set.txt```.  
 ```
 ------------------------------------------------
@@ -58,9 +57,9 @@ When the program starts, it shows the Sets founded in the file ```set.txt```.
 ------------------------------------------------
 ```  
 
-With these, you can choose one of the following `OPERATIONS` and executing them accordingly to the operator assigned to it:
+With these, you can choose one of the following `RELATIONS` and executing them accordingly to the operator assigned to it:
 
-|    OPERATION   |   OPERATOR  |
+|    RELATIONS   |   OPERATOR  |
 | :------------  | :---------: |
 | Greather than  |      >      |
 | Less than      |      <      |
@@ -83,7 +82,7 @@ After given an `OPERATION STRING`, the program returns:
 - If Isomorphism
 
 ### Example
-Given Sets `A = {0, 1, 2, 3, 4`}` and `B = {2, 7, 3, 4}`, then:
+Given Sets `A = {0, 1, 2, 3, 4}` and `B = {2, 7, 3, 4}`, then:
 ```
 ------------------------------------------------
 OPERATION STRING: A > B
