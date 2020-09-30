@@ -12,8 +12,7 @@ Relations is an application developed for an assignment of a Discrete Mathematic
 ## Setup
 
 ### File Structure
-
-When the program starts, it will search for a file called ```set.txt```, that have to be with the executable code, or in the folder before. The file structure should be one of these that follows:
+The program will search for a file called ```set.txt```, that have to be with the executable code, or in the folder before. The file structure should be one of these that follows:
 
 ```
 project
